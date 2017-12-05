@@ -32,8 +32,12 @@ public class Main {
 
     public void handleCommand(Animal pet, String command) {
         if (command.equals("f")) {
-            pet.feed(1);
-            pet.setMessage("You have fed " + pet.name + ".");
+            if (pet.isSleeping) {
+                pet.setMessage("You cannot feed a sleeping pet! Wake up " + pet.name + " first!");
+            } else {
+                pet.feed(1);
+                pet.setMessage("You have fed " + pet.name + ".");
+            }
         }
         if (command.equals("n")) {
             pet.nap();
