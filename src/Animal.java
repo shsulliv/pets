@@ -57,6 +57,15 @@ public class Animal {
     int getHealth() {
         return Math.max(0, (30 - Math.abs(30 - size)) - hunger);
     }
+
+
+    void checkHealth() {
+        int health = getHealth();
+        if (health < 5) {
+            setMessage("Take your pet to the vet!");
+        }
+    }
+
     void play() {
         setHunger(hunger + 3);
         if (hunger > 5) {
@@ -103,6 +112,7 @@ public class Animal {
     }
 
     void display() {
+        checkHealth();
         displayAvatar();
         displayOwner();
         displayHunger();
