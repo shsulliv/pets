@@ -8,12 +8,16 @@ public class Animal {
   boolean isSleeping;
   String message;
 
+  Animal() {
+    this("Generic animal", "No owner");
+  }
+
   Animal(String name, String owner) {
     this.name = name;
     this.owner = owner;
-    setSize(30);
-    setHunger(5);
-    setMessage("");
+    size = 30;
+    hunger = 5;
+    message = "";
   }
 
   void setHunger(int hunger) {
@@ -41,18 +45,25 @@ public class Animal {
   }
 
   void feed(int amount) {
-    setHunger(hunger - amount);
-    if (hunger == 0) {
-      setSize(size + 2);
+    if (isSleeping) {
+      setMessage("You cannot feed a sleeping pet! Wake up " + name + " first!");
+    } else {
+      setHunger(hunger - amount);
+      if (hunger == 0) {
+        setSize(size + 2);
+      }
+      setMessage("You have fed " + name + ".");
     }
   }
 
   void nap() {
     isSleeping = true;
+    setMessage("You have put " + name + " to sleep.");
   }
 
   void wakeUp() {
     isSleeping = false;
+    setMessage("You have woken up " + name + ".");
   }
 
   int getHealth() {
@@ -71,6 +82,11 @@ public class Animal {
     if (hunger > 5) {
       setSize(size - 3);
     }
+    setMessage("You have played with " + name + ".");
+  }
+
+  void speak() {
+    setMessage("Animal noise!");
   }
 
   void displayAvatar() {
